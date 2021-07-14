@@ -1,0 +1,38 @@
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-md-5">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }"
+                        [routerLink]="['/']">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLinkActive]="'active'" [routerLink]="['/rooms']">Rooms</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLinkActive]="'active'" [routerLink]="['/students']">Students</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLinkActive]="'active'" [routerLink]="['/reservations']">Reservations</a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="col-md-6" *ngIf="username">
+            <div class="dropdown float-right">
+                <div class="btn btn-outline-danger dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="../../assets/static/images/unknown_user.png" />
+                    <span>Vous</span>
+                </div>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" [routerLink]="[username]">Profil</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" (click)="logout()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>

@@ -1,0 +1,79 @@
+<div class="card">
+    <div class="card-header bg-warning">
+        <h3>Reserver une nouvelle salle</h3>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onValidReservation()">
+
+            <div class="container" *ngIf="successMessage">
+                <p class="alert alert-success">{{ successMessage }}</p>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="example-date-input" class="col-12 col-form-label"><b>Date</b></label>
+                        <input class="form-control" type="date" id="example-date-input" formControlName="reservedAt"
+                            [ngClass]="{ 'is-invalid': submitted && f.reservedAt.errors }" />
+                        <div *ngIf="submitted && f.reservedAt.errors" class="invalid-feedback">
+                            <div *ngIf="f.reservedAt.required">reservedAt is required</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="example-beginningHoure-input" class="col-12 col-form-label"><b>Heure
+                                Debut</b></label>
+                        <input class="form-control" type="time" id="example-beginningHoure-input" name="beginningHoure"
+                            formControlName="beginningHoure"
+                            [ngClass]="{ 'is-invalid': submitted && f.beginningHoure.errors }" />
+                        <div *ngIf="submitted && f.beginningHoure.errors" class="invalid-feedback">
+                            <div *ngIf="f.beginningHoure.required">beginningHoure is required</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="example-endTime-input" class="col-12 col-form-label"><b>Heure Fin</b></label>
+                        <input class="form-control" type="time" id="example-endTime-input" name="endTime"
+                            formControlName="endTime" [ngClass]="{ 'is-invalid': submitted && f.endTime.errors }" />
+                        <div *ngIf="submitted && f.endTime.errors" class="invalid-feedback">
+                            <div *ngIf="f.endTime.required">endTime is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <label class="col-form-label"><b>Departements</b></label>
+                    <select class="form-control" [ngClass]="{ 'is-invalid': submitted && f.departmentName.errors }"
+                        name="departmentName" formControlName="departmentName" (change)="loadRooms()">
+                        <option *ngFor="let departement of departments;" [value]="departement">{{ departement }}</option>
+                    </select>
+                    <div *ngIf="submitted && f.departmentName.errors" class="invalid-feedback">
+                        <div *ngIf="f.departmentName.required">departement is required</div>
+                    </div>
+                </div>
+
+                <div *ngIf="rooms && rooms.length > 0; else noRoomAvailable" class="col-sm-4">
+                    <label class="col-form-label"><b>Les salles disponibles</b></label>
+                    <select class="form-control" [ngClass]="{ 'is-invalid': submitted && f.roomName.errors }"
+                        name="roomName" formControlName="roomName">
+                        <option *ngFor="let room of rooms;" [value]="room.name">{{ room.name }}</option>
+                    </select>
+                    <div *ngIf="submitted && f.roomName.errors" class="invalid-feedback">
+                        <div *ngIf="f.roomName.required">roomName is required</div>
+                    </div>
+                </div>
+
+                <ng-template #noRoomAvailable>
+                    <div class="col-sm-8">
+                        <label class="col-form-label"></label>
+                        <p class="alert alert-danger">Aucune salle disponible dans ce departement</p>
+                    </div>
+                </ng-template>
+                
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" [disabled]="f.departmentName.invalid || f.roomName.invalid">Valider</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="row">
+
+    <div class="col-sm-4">
+        <img src="../../../assets/static/images/unknown_user.png" />
+    </div>
+
+    <div *ngIf="student" class="border border-info col-sm-4" style="border-radius: 10px;">
+        <div class="container" style="margin-top: 20px;">
+            <div class="row" style="line-height: 2.5em;">
+                <div class="col-sm-6"><b>Nom: </b> {{ student.lastName }}</div>
+                <div class="col-sm-6"><b>Prenom: </b> {{ student.firstName }}</div>
+                <div class="col-sm-12"><b>Email: </b> {{ student.email }}</div>
+                <div class="col-sm-12"><b>Phone: </b> {{ student.phone }}</div>                
+            </div>
+            
+        </div>
+    </div>
+
+</div>

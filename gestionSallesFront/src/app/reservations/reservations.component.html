@@ -1,0 +1,69 @@
+<!-- <app-navbar></app-navbar> -->
+
+<div class="container">
+
+    <div class="card">
+        <div class="card-header bg-info container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h2 class="text-white">Liste de Reservations</h2>
+                </div>
+                <div class="col-md-3">
+                    <a class="float-right btn btn-warning" [routerLink]="['/new-reservation']">Reserver Maintenant</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div *ngIf="reservations &&  reservations.length > 0; else noRreservations">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nom Complet</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Reserver par</th>
+                            <th scope="col">Reserver a</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let reservation of reservations;">
+                            <th *ngIf="reservation.student; else fullname">
+                                {{ reservation.student.lastName + " " + reservation.student.firstName}}
+                            </th>
+                            <ng-template #fullname>
+                                <th>null</th>
+                            </ng-template>
+
+                            <td *ngIf="reservation.student; else email">
+                                {{ reservation.student.email}}
+                            </td>
+                            <ng-template #email>
+                                <th>null</th>
+                            </ng-template>
+
+                            <td *ngIf="reservation.student; else phone">
+                                {{ reservation.student.phone}}
+                            </td>
+                            <ng-template #phone>
+                                <th>null</th>
+                            </ng-template>
+                            <td>
+                                {{ reservation.reservedBy }}
+                            </td>
+                            <td>
+                                {{ reservation.reservedAt + " " + (reservation.beginningHoure + " - " +
+                                reservation.endTime) }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <ng-template #noRreservations>
+                <div class="alert alert-warning">Il n y a pas de reservations pour cet etudiant</div>
+            </ng-template>
+
+        </div>
+    </div>
+
+</div>

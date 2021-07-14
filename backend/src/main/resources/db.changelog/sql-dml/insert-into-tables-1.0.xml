@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="insert-into-filiere-01" author="said-marhrani">
+        <sql>
+            insert into filieres(name, level) values('mip', '1ere annee');
+            insert into filieres(name, level) values('mql', '1ere annee');
+            insert into filieres(name, level) values('smi', '3eme annee');
+            insert into filieres(name, level) values('mql', '2eme annee');
+        </sql>
+    </changeSet>
+
+    <changeSet id="insert-into-responsable-01" author="said-marhrani">
+        <sql>
+            insert into responsibles(fullname, email, password, office)
+            values('Ahmed', 'ahmed@gmail.com', 'ahmed123', 'scolarite');
+        </sql>
+    </changeSet>
+
+    <changeSet id="insert-into-student-01" author="said-marhrani">
+        <sql>
+
+            insert into students(cne, lastname, firstname, username, email, password, phone, filiere_id)
+            values('cne456', 'marhrani', 'said', 'said_marhrani', 'said@gmail.com', 'said123','78544', 4);
+
+            insert into students(cne, lastname, firstname, username, email, password, phone, filiere_id)
+            values('cne123', 'marhrani', 'youness', 'youness_marhrani', 'youness@gmail.com', '123','4578121', 1);
+
+            insert into students(cne, lastname, firstname, username, email, password, phone, filiere_id)
+            values('cne8798798', 'oukirche', 'abdessamade', 'abdessamade_oukirche', 'abdessamade@gmail.com', 'abdo123','258784', 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="insert-into-salle-01" author="said-marhrani">
+        <sql>
+            insert into rooms(name, department, has_projector) values('Salle C1', 'chemistry', false);
+            insert into rooms(name, department, has_projector) values('Salle P1', 'physics', false);
+            insert into rooms(name, department, has_projector) values('Salle INFO 1', 'informatic', true);
+            insert into rooms(name, department, has_projector) values('Salle INFO 2', 'informatic', true);
+            insert into rooms(name, department, has_projector) values('Salle INFO 3', 'informatic', true);
+        </sql>
+    </changeSet>
+
+    <changeSet id="insert-into-reservation-01" author="said-marhrani">
+        <sql>
+            insert into reservations(beginning_houre, end_time, is_confirmed, reservation_date, reserved_at, reserved_by, responsible_id, room_id, student_id)
+            values('18:00', '20:00', false, '2021-02-15', '2021-02-17','student', 1, 'Salle INFO 1', 'cne456');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
